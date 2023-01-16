@@ -1,3 +1,4 @@
+from os.path import join, abspath, exists
 import json
 from re import compile as re_compile
 from argparse import ArgumentParser
@@ -57,11 +58,13 @@ parser.add_argument(
     "dest",
     type=str,
     help="Destination path for results",
-    default=".",
+    default=abspath("."),
 )
 
 args = parser.parse_args()
 game = args.game_name
-dest = args.dest if args.dest.endswith("/") else f"{args.dest}/"
-with open(f"{dest}results.json", "w") as f:
+if not exists(args.dest):
+    raise FileNotFoundError(f"Path {args.dest} does not exist")
+dest = join(args.dest, "results.json")
+with open(dest, "w") as f:
     f.write(json.dumps(search_game(game), cls=ResponseEncoder, indent=4))
