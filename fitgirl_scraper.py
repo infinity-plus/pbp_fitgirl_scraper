@@ -63,5 +63,5 @@ parser.add_argument(
 args = parser.parse_args()
 game = args.game_name
 dest = args.dest if args.dest.endswith("/") else f"{args.dest}/"
-with open(f"{dest}output.json", "w") as f:
+with open(f"{dest}results.json", "w") as f:
     f.write(json.dumps(search_game(game), cls=ResponseEncoder, indent=4))
