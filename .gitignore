@@ -22,9 +22,11 @@ var/
 wheels/
 pip-wheel-metadata/
 share/python-wheels/
+fitgirl_scraper.*/
 *.egg-info/
 .installed.cfg
 *.egg
+FitGirl-Scraper.exe
 MANIFEST
 
 # PyInstaller
